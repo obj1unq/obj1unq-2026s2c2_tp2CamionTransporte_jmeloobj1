@@ -55,8 +55,12 @@ method hayAlgunoQueTienePeligrosidad_(nivelDePeligrosidad) {
 	}
 
 	method puedeCircularEnRuta(nivelPeligrosidad) {
-	  return (!self.tieneExceso() && !cosas.any({cosa => cosa.nivelPeligrosidad() > nivelPeligrosidad}) )
+	  return (!self.tieneExceso() && !hayAlgunoQueTienePeligrosidad_(nivelDePeligrosidad) )
 	}
+
+
+
+
 }
 
 
