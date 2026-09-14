@@ -54,11 +54,15 @@ method hayAlgunoQueTienePeligrosidad_(nivelDePeligrosidad) {
 	 return cosasPeligrosas.add(self.hayAlgunoQueTienePeligrosidad_(nivelDePeligrosidad), self.cosasMasPeligrosasQue_(cosaIndicada))
 	}
 
-	method puedeCircularEnRuta() {
-	  return (!self.tieneExceso() && cosas.all({cosa => cosa.nivelPeligrosidad() })
+	method puedeCircularEnRuta(nivelPeligrosidad) {
+	  return (!self.tieneExceso() && !cosas.any({cosa => cosa.nivelPeligrosidad() > nivelPeligrosidad}) )
 	}
 }
 
+
+object ruta {
+  const nivel = 
+}
 
 object knightRider {
 	method peso() = 500
