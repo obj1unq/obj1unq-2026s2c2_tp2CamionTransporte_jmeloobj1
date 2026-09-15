@@ -2,7 +2,11 @@ import cosas.*
 
 object camion {
 	const property cosas = #{}
-		
+
+	method cosa() {
+	  return cosas
+	}
+
 	method cargar(unaCosa) {
 		self.validarCarga(unaCosa)
 		cosas.add(unaCosa)
@@ -25,6 +29,11 @@ object camion {
 		}
 
 	}
+
+	method vaciarCamion() {
+	  cosas.clear()
+	}
+
 	method hayAlgunoQuePesa_(peso) {
 	  return cosas.any({cosa => cosa.peso() == peso})
 	}
@@ -55,11 +64,36 @@ method hayAlgunoQueTienePeligrosidad_(nivelDePeligrosidad) {
 	}
 
 	method puedeCircularEnRuta(nivelPeligrosidad) {
-	  return (!self.tieneExceso() && !hayAlgunoQueTienePeligrosidad_(nivelDePeligrosidad) )
+	  return (!self.tieneExceso() && !self.hayAlgunoQueTienePeligrosidad_(nivelPeligrosidad) )
 	}
 
 
+method hayCosaQuePeseEntreMinimoYMaximo(minimo, maximo){
+    return cosas.any({cosa => cosa.peso() >= minimo && cosa.peso() <= maximo})  //  minimo =< cosa.peso() =< maximo
+}
 
+method cosaMasPesada(){
+    return cosas.max({cosa => cosa.peso()})
+}  
+
+
+method pesoDeCadaCosa() {
+    cosas.map({cosa => cosa.peso()})
+}
+
+method cantidadTotalDeBultos() {
+  return cosas.sum({cosa => cosa.cantidadDeBultos()})
+}
+
+method sufreAccidente() {
+  cosas.forEach({cosa => cosa.accidente()})
+}
+
+method trasportar(destino, camino) {
+  if (camino.puedeTransportar_(self) ){
+	destino.almacenarDeCamion_(self)
+  }
+}
 
 }
 
