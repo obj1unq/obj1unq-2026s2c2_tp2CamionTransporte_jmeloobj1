@@ -280,8 +280,10 @@ En el camión quedan Bumblebee y arena a granel.
 * Realizar un diagrama estático del sistema de objetos
 
 * Describir los polimorfismos asociados a las colecciones: 
-
    - ¿Qué nombre tiene el tipo de los objetos polimórficos?
+   tienen de nombre Cosa
    - ¿Qué mensajes componen ese tipo?
+   Los componen los mensajes peso(), nivelPeligrosidad(), cantidadDeBultos() y accidente().
    - ¿Qué objetos son los emisores de los mensajes polimórficos?
+   los objetos son camion y almacen, que los usa atraves de camion.
    
