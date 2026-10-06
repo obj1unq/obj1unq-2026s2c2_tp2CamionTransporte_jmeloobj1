@@ -6,11 +6,7 @@ object ruta9 {
 }
 
 object caminosVecinales {
-  var pesoMaximoPermitido = 500
-  
-  method pesoMaximoPermitido(_pesoMaximoPermitido) {
-    pesoMaximoPermitido = _pesoMaximoPermitido
-  }
+  var property pesoMaximoPermitido = 500
   
   method puedeTransportarACamion(camion) = camion.pesoTotal() <= pesoMaximoPermitido //correcion (feedback)
 }

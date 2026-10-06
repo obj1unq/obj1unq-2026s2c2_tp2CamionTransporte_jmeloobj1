@@ -11,13 +11,7 @@ object knightRider {
 }
 
 object arenaAGranel {
-	var peso = 0
-	
-	method peso(_peso) {
-		peso = _peso
-	}
-	
-	method peso() = peso
+	var property peso = 0
 	
 	method nivelPeligrosidad() = 1
 	
@@ -29,11 +23,7 @@ object arenaAGranel {
 }
 
 object paqueteDeLadrillos {
-	var ladrillos = 0
-	
-	method ladrillos(_ladrillos) {
-		ladrillos = _ladrillos
-	}
+	var property ladrillos = 0
 	
 	method peso() = ladrillos * self.pesoDeLadrillo()
 	
@@ -54,13 +44,7 @@ object paqueteDeLadrillos {
 }
 
 object residuosRadiactivos {
-	var peso = 0
-	
-	method peso(_peso) {
-		peso = _peso
-	}
-	
-	method peso() = peso
+	var property peso = 0
 	
 	method nivelPeligrosidad() = 200
 	
@@ -106,64 +90,62 @@ object sinMisiles {
 } //Aca finaliza
 
 object bumblebee {
-	var transformacion = transformadoEnAuto
-	
-	method transformacion(_transformacion) {
-		transformacion = _transformacion
-	}
+	var property transformacion = transformadoEnAuto
 	
 	method peso() = 800
 	
-	method nivelPeligrosidad() = transformacion.peligrosidad()
+	method nivelPeligrosidad() = transformacion.nivelPeligrosidad()
 	
 	
 	method cantidadDeBultos() = 2
 	
-	method accidente() {
-		transformacion = transformacion.tranformarse()
+	method transformarse() {
+	  transformacion = transformacion.otroModo()
 	}
+
+	method accidente() {
+	  self.transformarse()
+	}
+
+	
  } //objetos que son usados en bumblebee
 
 object transformadoEnAuto {
-	method peligrosidad() = 15
-	method tranformarse() {
+	method nivelPeligrosidad() = 15
+	method otroModo() {
 	  return transformadoEnRobot
 	}
 }
 
 object transformadoEnRobot {
-	method peligrosidad() = 30
-	method tranformarse() {
+	method nivelPeligrosidad() = 30
+	method otroModo() {
 	  return transformadoEnAuto
 	}
 }
 
 object contenedorPortuario {
-	const objetosDentro = #{}
+	const cosasDentro = #{}
 	
-	method peso() = 100 + objetosDentro.sum({ objeto => objeto.peso() })
+	method peso() = 100 + cosasDentro.sum({ objeto => objeto.peso() })
 	
-	method nivelPeligrosidad() = if (objetosDentro.isEmpty()) 0
+	method nivelPeligrosidad() = if (cosasDentro.isEmpty()) 0
 	                             else self.peligrosidadDelContenidoMasPeligroso()
 	
-	method peligrosidadDelContenidoMasPeligroso() = objetosDentro.map(
+	method peligrosidadDelContenidoMasPeligroso() = cosasDentro.map(
 		{ cosa => cosa.nivelPeligrosidad() }
 	).max()
 	
-	method cantidadDeBultos() = objetosDentro.sum({ cosa => cosa.cantidadDeBultos() }) + 1
+	method cantidadDeBultos() = cosasDentro.sum({ cosa => cosa.cantidadDeBultos() }) + 1
 	//correcion (feedback)
 	
 	method accidente() {
-		objetosDentro.forEach({ cosa => cosa.accidente() })
+		cosasDentro.forEach({ cosa => cosa.accidente() })
 	}
 }
 
 object embalajeDeSeguridad {
-	var envuelto = bumblebee
-	
-	method envuelto(_envuelto) {
-		envuelto = _envuelto
-	}
+	var property envuelto = bumblebee
 	
 	method peso() = envuelto.peso()
 	
