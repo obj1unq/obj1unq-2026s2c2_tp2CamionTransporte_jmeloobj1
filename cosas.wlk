@@ -94,7 +94,7 @@ object conMisiles {
 	
 	method nivelPeligrosidad() = 100
 	
-	method bultos() = 2
+	method cantidadDeBultos() = 2
 }
 
 object sinMisiles {

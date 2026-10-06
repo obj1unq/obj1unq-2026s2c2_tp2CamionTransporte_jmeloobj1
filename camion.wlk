@@ -3,8 +3,6 @@ import cosas.*
 object camion {
 	const property cosas = #{}
 	
-	method cosa() = cosas
-	
 	method cargar(unaCosa) {
 		self.validarCarga(unaCosa)
 		cosas.add(unaCosa)
