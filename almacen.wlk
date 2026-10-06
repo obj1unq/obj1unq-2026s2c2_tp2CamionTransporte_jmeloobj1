@@ -1,8 +1,8 @@
-import camion*
+import camion.* //correcion (feedback)
 object almacen{
     const almacenado = [] 
 
-    method almacenarDeCamion_(camion) {
+    method almacenarDeCargaDeCamion(camion) {
       almacenado.addAll(camion.cosas())
       camion.vaciarCamion()
     }
